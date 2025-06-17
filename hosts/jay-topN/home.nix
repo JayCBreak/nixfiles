@@ -18,6 +18,18 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.obsidian
+    pkgs.signal-desktop
+    pkgs.spotify
+    pkgs.prismlauncher
+    pkgs.hyprland
+    pkgs.hyprland-protocols
+    pkgs.libreoffice
+    pkgs.nextcloud-client
+    pkgs.gnome-tweaks
+    pkgs.gnome-extension-manager
+    
+
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -73,4 +85,12 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  
+  # Setup Git
+  programs.git = {
+    enable = true;
+    userName = "Jacob Chotenovsky";
+    userEmail = "mail@jacobchotenovsky.com";
+  };
+
 }

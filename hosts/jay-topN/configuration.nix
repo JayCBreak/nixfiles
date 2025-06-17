@@ -2,17 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
     ];
 
   # Continueing Hardware Mods
-
   hardware.graphics = {
     enable = true;
   };
@@ -94,19 +92,9 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
   # Enable the Gnome Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -147,28 +135,16 @@
     extraGroups = [ "networkmanager" "wheel" ];
     initialPassword = "Welcome123";
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      obsidian
-      signal-desktop
-      spotify
-      prismlauncher
-      hyprland
-      hyprland-protocols
-      libreoffice
-      nextcloud-client
-      gnome-tweaks
-      gnome-extension-manager
-    ];
   };
 
   # Install zsh
   programs.zsh.enable = true;
 
-  # Install Steam
-  programs.steam.enable = true;
-
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Steam
+  programs.steam.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -183,6 +159,9 @@
     kdePackages.partitionmanager
 #  wget
   ];
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
