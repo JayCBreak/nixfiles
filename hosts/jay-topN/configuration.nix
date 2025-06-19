@@ -10,13 +10,13 @@
       ./hardware-configuration.nix
     ];
 
-  # Continueing Hardware Mods
+  # Enable OpenGL
   hardware.graphics = {
     enable = true;
   };
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-
+  # Load amd driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  
   hardware.nvidia = {
 
     # Modesetting is required.
@@ -51,9 +51,8 @@
     # Setup Nvidia Prime for better power management
     prime = {
       # Setup Experimental Reverse Sync
-      reverseSync.enable = true;
-      allowExternalGpu = true;
-
+      # reverseSync.enable = true;
+      # allowExternalGpu = true;
 
       # Make sure to use the correct Bus ID values for your system!
       # intelBusId = "PCI:0:2:0"; # For Intel GPUs
@@ -61,6 +60,25 @@
       amdgpuBusId = "PCI:193:0:0"; # For AMD GPU
     };
 
+  };
+
+  specialisation = {
+    on-the-go.configuration = {
+      system.nixos.tags = [ "laptop-offload" ];
+      hardware.nvidia = {
+        prime.offload.enable = lib.mkForce true;
+        prime.offload.enableOffloadCmd = lib.mkForce true;
+        prime.sync.enable = lib.mkForce false;
+      };
+    };
+    battlestation.configuration = {
+      system.nixos.tags = [ "battlestation-sync" ];
+      hardware.nvidia = {
+        prime.offload.enable = lib.mkForce false;
+	prime.offload.enableOffloadCmd = lib.mkForce false;
+	prime.sync.enable = lib.mkForce true;
+      };
+    };
   };
 
   # Bootloader.
@@ -156,8 +174,10 @@
     git
     btop
     # plasma5Packages.plasma-thunderbolt
-    kdePackages.partitionmanager
-#  wget
+    mesa
+    libGL
+    libglvnd
+    wget
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
