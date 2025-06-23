@@ -111,9 +111,10 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  # Enable the Gnome Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  # Enable the Plasma6 Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -175,13 +176,24 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wl-clipboard
+    wayland-utils
     git
+    wget
     btop
-    # plasma5Packages.plasma-thunderbolt
+    # KDE
+    kdePackages.plasma-thunderbolt
+    kdePackages.discover
+    kdePackages.kcalc
+    kdePackages.kcharselect
+    kdePackages.kcolorchooser
+    kdePackages.ksystemlog
+    kdePackages.sddm-kcm
+    kdePackages.partitionmanager
+    # Needed for Prism Launcher to run
     mesa
     libGL
     libglvnd
-    wget
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
