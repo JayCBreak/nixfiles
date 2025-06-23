@@ -17,6 +17,7 @@
   # Load amd driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   
+  # Setup Nvidia
   hardware.nvidia = {
 
     # Modesetting is required.
@@ -163,6 +164,9 @@
 
   # Steam
   programs.steam.enable = true;
+
+  # Xbox Wireless Module "for Windows" enabled for Xbox One Controller Support
+  hardware.xone.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
