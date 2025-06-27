@@ -17,18 +17,18 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.obsidian
-    pkgs.signal-desktop
-    pkgs.spotify
-    pkgs.prismlauncher
-    pkgs.hyprland
-    pkgs.hyprland-protocols
-    pkgs.libreoffice
-    pkgs.nextcloud-client
-    pkgs.gnome-tweaks
-    pkgs.gnome-extension-manager
-    
+  home.packages = with pkgs; [
+    obsidian
+    signal-desktop
+    spotify
+    prismlauncher
+    hyprland
+    hyprland-protocols
+    libreoffice
+    nextcloud-client
+    discord-screenaudio
+    lutris
+    bitwarden-desktop
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.

@@ -181,6 +181,7 @@
     git
     wget
     btop
+    ntfs3g
     # KDE
     kdePackages.plasma-thunderbolt
     kdePackages.discover
