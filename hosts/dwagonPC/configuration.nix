@@ -105,7 +105,7 @@
   # services.xserver.libinput.enable = true;
 
   # Setup home manager
-  home-manager.users."dwagon" = import ./home.nix
+  home-manager.users."dwagon" = import ./home.nix;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dwagon = {
