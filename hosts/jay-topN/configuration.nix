@@ -105,6 +105,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   # Set your time zone.
   time.timeZone = "America/Toronto";
 
