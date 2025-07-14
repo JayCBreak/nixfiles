@@ -222,6 +222,13 @@
   # Enable Thunderbolt
   services.hardware.bolt.enable = true;
 
+  # Enable Sunshine (Open Source NVidia Moonlight Server)
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

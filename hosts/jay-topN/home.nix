@@ -22,8 +22,6 @@
     signal-desktop
     spotify
     prismlauncher
-    hyprland
-    hyprland-protocols
     libreoffice
     nextcloud-client
     discord-screenaudio
@@ -91,6 +89,12 @@
     enable = true;
     userName = "Jacob Chotenovsky";
     userEmail = "mail@jacobchotenovsky.com";
+  };
+  
+  programs.neovim = {
+    enable = true;
+    coc.enable = true;
+
   };
 
 }
